@@ -20,7 +20,7 @@ jobs:
      - name: replace with labels
        run: |
         sed -i '/\.\/config.sh --url https:\/\/github.com\/${OWNER}\/${REPO} --token ${REG_TOKEN} --ephemeral/d' start.sh
-         sed -i '/\/config.sh --url https:\/\/github.com\/${OWNER}\/${REPO} --token ${REG_TOKEN} --ephemeral --labels${{{ inputs.REPO }}}/d' start.sh
+         sed -i '/\/config.sh --url https:\/\/github.com\/${OWNER}\/${REPO} --token ${REG_TOKEN} --ephemeral --labels${${{ inputs.REPO }}}/d' start.sh
 
      - name: configure aws credentials
        uses: aws-actions/configure-aws-credentials@v1
