@@ -1,0 +1,33 @@
+name: test
+
+on:
+  workflow_call:
+    inputs:
+      REPO:
+        type: string
+        description: REPO
+        required: true
+      
+    
+
+
+jobs:
+  Get_Outputs:
+    name: test
+    runs-on:  ubuntu-latest
+    steps:
+     - name: configure aws credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+          role-to-assume:  arn:aws:iam::381492127440:role/oidc
+          role-session-name: samplerolesession
+          aws-region: us-east-1
+     - name: run selfhosted  task
+       run: |   
+         aws ecs run-task \
+          --cluster seflhosted \
+          --task-definition selfhostedtaskdefintion \
+          --network-configuration "awsvpcConfiguration={subnets=[subnet-05697ffd26b05cf4e,subnet-083997ad122c7f52a,subnet-0157a6c6ee4b04af9,subnet-01330190bbc632794,subnet-07cdad2de341b6ab4,subnet-053c1047e32027c72],securityGroups=[sg-0aba0176f4107f2d7],assignPublicIp=ENABLED}" \
+          --launch-type FARGATE \
+          --overrides '{"containerOverrides":[{"name":"selfhosted","environment":[{"name":"REPO","value":"${{ inputs.REPO }}"}]}]}' \
+          --no-cli-pager
