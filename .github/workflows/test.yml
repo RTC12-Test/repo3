@@ -34,7 +34,6 @@ jobs:
         uses: PasseiDireto/gh-runner-task-action@v2.1.2
         with:
           github_pat: ${{ inputs.github_pat }}
-          task_definition: ${{ inputs.task_definition }}
           cluster: ${{ inputs.cluster }}
           
   actual-job:
