@@ -1,34 +1,45 @@
 name: test
-
 on:
   workflow_call:
     inputs:
-      REPO:
+      github_pat:
+        description: 'aws service'
         type: string
-        description: REPO
         required: true
-      
-    
+      task_definition:
+        type: string
+        description: 'aws task'
+        required: true
+      cluster:
+        description: 'aws cluster'
+        type: string
+        required: true
 
-
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read  
+  
 jobs:
-  Get_Outputs:
-    name: test
-    runs-on:  ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v4
-     - name: configure aws credentials
-       uses: aws-actions/configure-aws-credentials@v1
-       with:
-          role-to-assume:  arn:aws:iam::381492127440:role/oidc
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume:  arn:aws:iam::637423372838:role/aravind15b_oidc
           role-session-name: samplerolesession
           aws-region: us-east-1
-     - name: run selfhosted  task
-       run: |   
-         aws ecs run-task \
-          --cluster seflhosted \
-          --task-definition selfhostedtaskdefintion \
-          --network-configuration "awsvpcConfiguration={subnets=[subnet-05697ffd26b05cf4e,subnet-083997ad122c7f52a,subnet-0157a6c6ee4b04af9,subnet-01330190bbc632794,subnet-07cdad2de341b6ab4,subnet-053c1047e32027c72],securityGroups=[sg-0aba0176f4107f2d7],assignPublicIp=ENABLED}" \
-          --launch-type FARGATE \
-          --overrides '{"containerOverrides":[{"name":"selfhosted","environment":[{"name":"REPO","value":"${{ inputs.REPO }}"}]}]}' \
-          --no-cli-pager
+
+      - name: Provide a self-hosted runner to execute this job
+        uses: PasseiDireto/gh-runner-task-action@v2.1.2
+        with:
+          github_pat: ${{ inputs.github_pat }}
+          task_definition: ${{ inputs.task_definition }}
+          cluster: ${{ inputs.cluster }}
+          
+  actual-job:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: Run a sample command
+        run: echo hello
