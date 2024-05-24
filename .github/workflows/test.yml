@@ -6,10 +6,10 @@ on:
         description: 'aws service'
         type: string
         required: true
-      task_definition:
-        type: string
-        description: 'aws task'
-        required: true
+      # task_definition:
+      #   type: string
+      #   description: 'aws task'
+      #   required: true
       cluster:
         description: 'aws cluster'
         type: string
