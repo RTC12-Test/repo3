@@ -39,11 +39,13 @@ jobs:
          uses: aws-actions/aws-secretsmanager-get-secrets@v2
          with:
           secret-ids: |
+             exampleSecretName
              arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN
+          name-transformation: lowercase
 
 
        - name: Output secrets 
          run: |
-           echo ${{ env.RTCEK_SSO_DEV_SECRET_MANAGER }}
+           echo ${{ env.exampleSecretName }}
 
            
