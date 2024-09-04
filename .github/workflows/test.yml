@@ -1,19 +1,23 @@
 name: test
 on:
-  workflow_call:
-    inputs:
-      github_pat:
-        description: 'aws service'
-        type: string
-        required: true
-      task_definition:
-        type: string
-        description: 'aws task'
-        required: true
-      cluster:
-        description: 'aws cluster'
-        type: string
-        required: true
+ push:
+   push:
+    branches: ["main"]
+
+  # workflow_call:
+  #   inputs:
+  #     github_pat:
+  #       description: 'aws service'
+  #       type: string
+  #       required: true
+  #     task_definition:
+  #       type: string
+  #       description: 'aws task'
+  #       required: true
+  #     cluster:
+  #       description: 'aws cluster'
+  #       type: string
+  #       required: true
 
 permissions:
   id-token: write   # This is required for requesting the JWT
@@ -23,23 +27,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume:  arn:aws:iam::637423372838:role/aravind15b_oidc
-          role-session-name: samplerolesession
-          aws-region: us-east-1
+       - name: Configure AWS credentials
+         uses: aws-actions/configure-aws-credentials@v4
+         with:
+             aws-access-key-id: "AKIAZ3MGMZLWXWSF6CQD"
+              aws-secret-access-key: "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"
+             aws-region: "us-east-1"
 
-      - name: Provide a self-hosted runner to execute this job
-        uses: PasseiDireto/gh-runner-task-action@v2.1.2
-        with:
-          github_pat: ${{ inputs.github_pat }}
-          cluster: ${{ inputs.cluster }}
-          task_definition: ${{ inputs.task_definition }}
-          
-  actual-job:
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - name: Run a sample command
-        run: echo hello
+     - name: Get secrets by name and by ARN
+       uses: aws-actions/aws-secretsmanager-get-secrets@v2
+       with:
+         secret-ids: |
+           acs1_ldap_pass
+           arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN:acs1_ldap_pass
+
+
+      - name: Output secrets 
+        run: |
+           echo ${{ env.acs1_ldap_pass }}
+
+           
