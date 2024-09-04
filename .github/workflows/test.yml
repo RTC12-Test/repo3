@@ -45,6 +45,6 @@ jobs:
 
        - name: Output secrets 
          run: |
-           echo ${{ env.hello }}
+           echo "${{ env.hello }}" >> GITHUB_ENV
 
            
