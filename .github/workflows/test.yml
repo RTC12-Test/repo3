@@ -39,16 +39,11 @@ jobs:
          uses: aws-actions/aws-secretsmanager-get-secrets@v2
          with:
           secret-ids: |
-             hello,arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN
+             arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN
           name-transformation: lowercase
           parse-json-secrets: true
 
-
-       - name: Output secrets 
-         run: |
-           echo "${{ env.hello }}" >> GITHUB_ENV
-
        - name: hello
          run: | 
-          echo ${{ env.hello }}
+          echo ${{ env }}
            
