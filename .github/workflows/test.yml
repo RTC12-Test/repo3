@@ -31,19 +31,19 @@ jobs:
          uses: aws-actions/configure-aws-credentials@v4
          with:
              aws-access-key-id: "AKIAZ3MGMZLWXWSF6CQD"
-              aws-secret-access-key: "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"
+             aws-secret-access-key: "+dcG/JOALI4cCrECsHecGFG/EGw9UiijJLjNY1NT"
              aws-region: "us-east-1"
 
-     - name: Get secrets by name and by ARN
-       uses: aws-actions/aws-secretsmanager-get-secrets@v2
-       with:
-         secret-ids: |
+       - name: Get secrets by name and by ARN
+         uses: aws-actions/aws-secretsmanager-get-secrets@v2
+         with:
+          secret-ids: |
            acs1_ldap_pass
            arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN:acs1_ldap_pass
 
 
-      - name: Output secrets 
-        run: |
+       - name: Output secrets 
+         run: |
            echo ${{ env.acs1_ldap_pass }}
 
            
