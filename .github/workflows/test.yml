@@ -49,6 +49,6 @@ jobs:
            echo "${{ env.hello }}" >> GITHUB_ENV
 
        - name: hello
-         run: env
-
+         run: | 
+          echo ${{ env.hello }}
            
