@@ -39,7 +39,7 @@ jobs:
          uses: aws-actions/aws-secretsmanager-get-secrets@v2
          with:
           secret-ids: |
-             arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN:acs1_ldap_pass::
+             arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN
 
 
        - name: Output secrets 
