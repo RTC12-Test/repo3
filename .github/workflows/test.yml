@@ -41,6 +41,7 @@ jobs:
           secret-ids: |
              hello,arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN
           name-transformation: lowercase
+          parse-json-secrets: true
 
 
        - name: Output secrets 
