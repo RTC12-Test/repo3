@@ -44,6 +44,6 @@ jobs:
 
        - name: Output secrets 
          run: |
-           echo ${{ env.acs1_ldap_pass }}
+           echo ${{ env.RTCEK_SSO_DEV_SECRET_MANAGER }}
 
            
