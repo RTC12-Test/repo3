@@ -33,7 +33,7 @@ jobs:
           touch hello.txt 
           echo "hello world!" > ${{ github.workspace }}/hello.txt 
       - name: ls
-        run: ls ${{ runner.temp }}
+        run: ls ${{ github.workspace }}
   job2:
     runs-on: ubuntu-latest
     needs: ["job1"]
