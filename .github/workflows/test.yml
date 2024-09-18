@@ -29,7 +29,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: create file 
-        run: echo "hello world!" > ${{ runner.temp }} 
+        run: |
+          touch hello.txt 
+          echo "hello world!" > ${{ runner.temp }}/hello.txt 
       - name: ls
         run: ls ${{ runner.temp }}
   job2:
