@@ -24,12 +24,19 @@ permissions:
   contents: read  
   
 jobs:
-  build:
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - name: $RUNNER_TEMP
-        run: ls $RUNNER_TEMP
-      - name: runnertemp
+      - uses: actions/checkout@v4
+      - name: echo "hello world!" > ${{ runner.temp }} 
+      - name: ls
+        run: ls ${{ runner.temp }}
+  job2:
+    runs-on: ubuntu-latest
+    needs: ["job1"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: ls
         run: ls ${{ runner.temp }}
   
        
