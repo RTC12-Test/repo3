@@ -27,23 +27,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-       - name: Configure AWS credentials
-         uses: aws-actions/configure-aws-credentials@v4
-         with:
-             aws-region: "us-east-1"
-             role-to-assume: "arn:aws:iam::677276076781:role/odic"
-             role-session-name: "hello"
-             
-
-       - name: Get secrets by name and by ARN
-         uses: aws-actions/aws-secretsmanager-get-secrets@v2
-         with:
-          secret-ids: |
-             ,arn:aws:secretsmanager:us-east-1:677276076781:secret:rtcek-sso-dev-secret-manager-LswlhN
-          name-transformation: lowercase
-          parse-json-secrets: true
-
-       - name: hello
-         run: | 
-          echo ${{ toJSON(env) }}
+      - name: $RUNNER_TEMP
+        run: ls $RUNNER_TEMP
+      - name: runnertemp
+        run: ls ${{ runner.temp }}
+  
+       
            
