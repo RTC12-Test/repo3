@@ -28,7 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: echo "hello world!" > ${{ runner.temp }} 
+      - name: create file 
+        run: echo "hello world!" > ${{ runner.temp }} 
       - name: ls
         run: ls ${{ runner.temp }}
   job2:
