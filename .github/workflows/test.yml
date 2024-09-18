@@ -31,7 +31,7 @@ jobs:
       - name: create file 
         run: |
           touch hello.txt 
-          echo "hello world!" > ${{ runner.temp }}/hello.txt 
+          echo "hello world!" > ${{ github.workspace }}/hello.txt 
       - name: ls
         run: ls ${{ runner.temp }}
   job2:
@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: ls
-        run: ls ${{ runner.temp }}
+        run: ls ${{ github.workspace }}
   
        
            
