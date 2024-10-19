@@ -31,8 +31,10 @@ jobs:
       - name: secrets
         run: |
           import os
+          asd= []
           for q in (os.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")):
-            print(q)
+            asd.append(q)
+          print(asd)
  
  
         shell: python
