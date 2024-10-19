@@ -29,9 +29,10 @@ jobs:
       - name: env
         run: |
            bash --version
-           z="hAAAello"
-           echo ${z^^}
-           echo ${z,,}
+           a="asd"
+           b="a"
+           echo "$a=$b" >> $GITHUB_OUTPUT
+
       # - name: secrets
       #   run: |
       #     import os
