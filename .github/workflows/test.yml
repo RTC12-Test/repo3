@@ -28,6 +28,16 @@ jobs:
     steps:
       - name: env
         run: env
+      - name: secrets
+        env:
+         MY_VAL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN  }}
+        run: |
+          import os
+          for q in (os.getenv("MY_VAL")):
+            q.join(q)
+          print(q)
+ 
+        shell: python
   #     - uses: actions/checkout@v4
   #     - name: create file 
   #       run: |
