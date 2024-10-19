@@ -34,8 +34,8 @@ jobs:
         run: |
           import os
           for q in (os.getenv("MY_VAL")):
-            q.join(q)
-          print(q)
+            print(q)
+ 
  
         shell: python
   #     - uses: actions/checkout@v4
