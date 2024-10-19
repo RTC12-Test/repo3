@@ -27,12 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: env
+        id: test
         run: |
            bash --version
            a="asd"
            b="a"
-           echo "$a=$b" >> $GITHUB_OUTPUT
-
+           echo "z=$a=$b" >> $GITHUB_OUTPUT
+      - name: outpt
+        run: ${{ steps.test.outputs.z }} 
       # - name: secrets
       #   run: |
       #     import os
