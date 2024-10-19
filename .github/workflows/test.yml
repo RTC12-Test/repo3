@@ -18,23 +18,23 @@ on:
   #       type: string
   #       required: true
 
-permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read  
+# permissions:
+#   id-token: write   # This is required for requesting the JWT
+#   contents: read  
   
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - name: env
-        run: env
-      - name: secrets
-        run: |
-          import os
-          asd= []
-          for q in (os.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")):
-            asd.append(q)
-          print(asd)
+        run: bash --version
+      # - name: secrets
+      #   run: |
+      #     import os
+      #     asd= []
+      #     for q in (os.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")):
+      #       asd.append(q)
+      #     print(asd)
  
  
         shell: python
