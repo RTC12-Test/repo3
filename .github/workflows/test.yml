@@ -28,8 +28,10 @@ jobs:
     steps:
       - name: env
         run: |
+           bash --version
            z="hello"
            echo ${z^}
+        shell: bash
       # - name: secrets
       #   run: |
       #     import os
