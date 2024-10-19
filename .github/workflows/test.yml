@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: env
-        run: envs
+        run: env
   #     - uses: actions/checkout@v4
   #     - name: create file 
   #       run: |
