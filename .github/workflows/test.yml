@@ -27,7 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: env
-        run: bash --version
+        run: |
+           bash --version
       # - name: secrets
       #   run: |
       #     import os
