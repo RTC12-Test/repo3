@@ -31,7 +31,6 @@ jobs:
            bash --version
            z="hello"
            echo ${z^}
-        shell: bash
       # - name: secrets
       #   run: |
       #     import os
@@ -39,9 +38,7 @@ jobs:
       #     for q in (os.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")):
       #       asd.append(q)
       #     print(asd)
- 
- 
-        shell: python
+        # shell: python
   #     - uses: actions/checkout@v4
   #     - name: create file 
   #       run: |
