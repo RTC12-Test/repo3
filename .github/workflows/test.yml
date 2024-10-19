@@ -29,11 +29,9 @@ jobs:
       - name: env
         run: env
       - name: secrets
-        env:
-         MY_VAL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN  }}
         run: |
           import os
-          for q in (os.getenv("MY_VAL")):
+          for q in (os.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")):
             print(q)
  
  
