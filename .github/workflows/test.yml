@@ -29,8 +29,9 @@ jobs:
       - name: env
         run: |
            bash --version
-           z="hello"
-           echo ${z^}
+           z="hAAAello"
+           echo ${z^^}
+           echo ${z,,}
       # - name: secrets
       #   run: |
       #     import os
