@@ -38,7 +38,7 @@ jobs:
            echo "z=${img[@]}" >> $GITHUB_OUTPUT
 
       - name: outpt
-        run: ${{ steps.test.outputs.z }} 
+        run: "${{ steps.test.outputs.z }}"
       # - name: secrets
       #   run: |
       #     import os
