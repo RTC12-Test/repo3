@@ -1,5 +1,11 @@
 name: test
 on:
+ workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch name"
+        required: true
+
  push:
     branches: ["main"]
 
@@ -29,7 +35,7 @@ jobs:
       - name: env
         id: test
         run: |
-           asd="hello,jk"
+           asd=${{ inputs.branch }}
            img=()
            IFS="," read -ra arr <<<$asd
            for a in ${arr[@]}; do
