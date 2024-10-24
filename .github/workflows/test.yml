@@ -29,10 +29,14 @@ jobs:
       - name: env
         id: test
         run: |
-           bash --version
-           a="asd"
-           b="a"
-           echo "z=$a=$b" >> $GITHUB_OUTPUT
+           asd="hello,jk"
+           img=()
+           IFS="," read -ra arr <<<$asd
+           for a in ${arr[@]}; do
+             img+=("-target" $a)
+           done
+           echo "z=${img[@]}" >> $GIHUB_OUTPUT
+
       - name: outpt
         run: ${{ steps.test.outputs.z }} 
       # - name: secrets
