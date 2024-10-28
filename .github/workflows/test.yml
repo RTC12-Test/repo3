@@ -35,17 +35,9 @@ jobs:
       - name: env
         id: test
         run: |
-           asd=${{ inputs.branch }}
-           img=()
-           IFS="," read -ra arr <<<$asd
-           for a in ${arr[@]}; do
-             img+=("-target" $a)
-           done
-           echo "z=${img[@]}" >> $GITHUB_OUTPUT
+          aws --version
 
-      - name: outpt
-        run: echo "${{ steps.test.outputs.z }}"
-      # - name: secrets
+
       #   run: |
       #     import os
       #     asd= []
