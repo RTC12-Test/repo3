@@ -36,6 +36,7 @@ jobs:
       uses: peter-evans/repository-dispatch@v3
       with:
           event-type: hello
+          repository: RTC12-Test/repo2
       # - name: env
       #   id: test
       #   run: |
