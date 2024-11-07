@@ -32,10 +32,14 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: env
-        id: test
-        run: |
-          aws --version
+    - name: repository dispatch
+      uses: peter-evans/repository-dispatch@v3
+      with:
+          event-type: hello
+      # - name: env
+      #   id: test
+      #   run: |
+      #     aws --version
 
 
       #   run: |
