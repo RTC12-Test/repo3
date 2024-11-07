@@ -37,6 +37,7 @@ jobs:
       with:
           event-type: hello
           repository: RTC12-Test/repo2
+          token: "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"
       # - name: env
       #   id: test
       #   run: |
