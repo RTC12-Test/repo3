@@ -38,6 +38,13 @@ jobs:
           event-type: hello
           repository: RTC12-Test/repo2
           token: "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"
+    - name: workflow dispatch
+      uses: peter-evans/repository-dispatch@v3
+      with:
+         workflow: test.yaml
+         repo: RTC12-Test/repo4
+         token: "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"
+   
       # - name: env
       #   id: test
       #   run: |
