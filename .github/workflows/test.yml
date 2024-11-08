@@ -37,13 +37,13 @@ jobs:
       with:
           event-type: hello
           repository: RTC12-Test/repo2
-          token: "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"
+          token: "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"
     - name: workflow dispatch
       uses: benc-uk/workflow-dispatch@v1
       with:
          workflow: test.yml
          repo: RTC12-Test/repo4
-         # token: "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"
+         token: "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"
    
       # - name: env
       #   id: test
