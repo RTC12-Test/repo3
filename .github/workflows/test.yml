@@ -43,7 +43,7 @@ jobs:
       with:
          workflow: test.yml
          repo: RTC12-Test/repo4
-         token: "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"
+         # token: "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"
    
       # - name: env
       #   id: test
