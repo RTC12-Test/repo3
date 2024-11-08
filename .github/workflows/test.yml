@@ -28,13 +28,13 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-    - name: repository dispatch
-      uses: peter-evans/repository-dispatch@v3
-      with:
-          event-type: hello
-          repository: RTC12-Test/repo2
-          token: "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"
-          client-payload: '{"env": "dev"}'
+    # - name: repository dispatch
+    #   uses: peter-evans/repository-dispatch@v3
+    #   with:
+    #       event-type: hello
+    #       repository: RTC12-Test/repo2
+    #       token: "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"
+    #       client-payload: '{"env": "dev"}'
 
           
     - name: workflow dispatch
