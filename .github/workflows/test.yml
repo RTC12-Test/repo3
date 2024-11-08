@@ -39,7 +39,7 @@ jobs:
           repository: RTC12-Test/repo2
           token: "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"
     - name: workflow dispatch
-      uses: peter-evans/repository-dispatch@v3
+      uses: benc-uk/workflow-dispatch@v1
       with:
          workflow: test.yaml
          repo: RTC12-Test/repo4
