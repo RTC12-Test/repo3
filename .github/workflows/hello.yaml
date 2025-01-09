@@ -2,7 +2,7 @@ name: Scheduled Job with Bash
 
 on:
   schedule:
-    - cron: '46 6 9 1 *'  # Runs at 5:30 AM UTC on January 10th
+    - cron: '51 6 9 1 *'  # Runs at 5:30 AM UTC on January 10th
   
 jobs:
   run_bash_script:
