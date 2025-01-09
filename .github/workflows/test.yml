@@ -1,76 +1,76 @@
-name: test
-on:
- workflow_dispatch:
+# name: test
+# on:
+#  workflow_dispatch:
 
- push:
-    branches: ["main"]
+#  push:
+#     branches: ["main"]
 
-  # workflow_call:
-  #   inputs:
-  #     github_pat:
-  #       description: 'aws service'
-  #       type: string
-  #       required: true
-  #     task_definition:
-  #       type: string
-  #       description: 'aws task'
-  #       required: true
-  #     cluster:
-  #       description: 'aws cluster'
-  #       type: string
-  #       required: true
+#   # workflow_call:
+#   #   inputs:
+#   #     github_pat:
+#   #       description: 'aws service'
+#   #       type: string
+#   #       required: true
+#   #     task_definition:
+#   #       type: string
+#   #       description: 'aws task'
+#   #       required: true
+#   #     cluster:
+#   #       description: 'aws cluster'
+#   #       type: string
+#   #       required: true
 
-# permissions:
-#   id-token: write   # This is required for requesting the JWT
-#   contents: read  
+# # permissions:
+# #   id-token: write   # This is required for requesting the JWT
+# #   contents: read  
   
-jobs:
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-    # - name: repository dispatch
-    #   uses: peter-evans/repository-dispatch@v3
-    #   with:
-    #       event-type: hello
-    #       repository: RTC12-Test/repo2
-    #       token: "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"
-    #       client-payload: '{"env": "dev"}'
+# jobs:
+#   job1:
+#     runs-on: ubuntu-latest
+#     steps:
+#     # - name: repository dispatch
+#     #   uses: peter-evans/repository-dispatch@v3
+#     #   with:
+#     #       event-type: hello
+#     #       repository: RTC12-Test/repo2
+#     #       token: "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"
+#     #       client-payload: '{"env": "dev"}'
 
           
-    - name: workflow dispatch
-      uses: benc-uk/workflow-dispatch@v1
-      with:
-         workflow: repo4.yaml
-         repo: RTC12-Test/repo4
-         token: "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" 
-         inputs: '{ "env": "dev" }'
+#     - name: workflow dispatch
+#       uses: benc-uk/workflow-dispatch@v1
+#       with:
+#          workflow: repo4.yaml
+#          repo: RTC12-Test/repo4
+#          token: "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" 
+#          inputs: '{ "env": "dev" }'
 
    
-      # - name: env
-      #   id: test
-      #   run: |
-      #     aws --version
+#       # - name: env
+#       #   id: test
+#       #   run: |
+#       #     aws --version
 
 
-      #   run: |
-      #     import os
-      #     asd= []
-      #     for q in (os.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")):
-      #       asd.append(q)
-      #     print(asd)
-        # shell: python
-  #     - uses: actions/checkout@v4
-  #     - name: create file 
-  #       run: |
-  #         touch hello.txt 
-  #         echo "hello world!" > ${{ github.workspace }}/hello.txt 
-  #     - name: ls
-  #       run: ls ${{ github.workspace }}
-  # job2:
-  #   runs-on: ubuntu-latest
-  #   needs: ["job1"]
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: ls
-  #       run: ls ${{ github.workspace }}
+#       #   run: |
+#       #     import os
+#       #     asd= []
+#       #     for q in (os.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")):
+#       #       asd.append(q)
+#       #     print(asd)
+#         # shell: python
+#   #     - uses: actions/checkout@v4
+#   #     - name: create file 
+#   #       run: |
+#   #         touch hello.txt 
+#   #         echo "hello world!" > ${{ github.workspace }}/hello.txt 
+#   #     - name: ls
+#   #       run: ls ${{ github.workspace }}
+#   # job2:
+#   #   runs-on: ubuntu-latest
+#   #   needs: ["job1"]
+#   #   steps:
+#   #     - uses: actions/checkout@v4
+#   #     - name: ls
+#   #       run: ls ${{ github.workspace }}
            
