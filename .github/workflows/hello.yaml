@@ -1,0 +1,36 @@
+name: Scheduled Job with Bash
+
+on:
+  schedule:
+    - cron: '46 6 9 1 *'  # Runs at 5:30 AM UTC on January 10th
+  
+jobs:
+  run_bash_script:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Bash script
+        run: |
+          echo "This job is triggered by a cron schedule"
+          
+          # Get the current date and time
+          current_time=$(date "+%Y-%m-%d %H:%M:%S")
+          echo "Current time: $current_time"
+          
+          # Example of Bash logic to validate if the job is running at the expected time
+          current_minute=$(date "+%M")
+          if [ "$current_minute" -eq 3 ]; then
+            echo "Job is running at the correct minute (30th minute)."
+          else
+            echo "This is unexpected: the job is not running at the 30th minute."
+          fi
+          
+          # Logic to ensure the job runs only tomorrow
+          current_date=$(date "+%Y-%m-%d")
+          target_date="2025-01-10"  # Replace with tomorrow's date
+          if [ "$current_date" != "$target_date" ]; then
+            echo "This job should only run tomorrow ($target_date). Exiting."
+            exit 0
+          fi
