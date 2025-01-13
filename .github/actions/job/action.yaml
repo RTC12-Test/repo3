@@ -4,5 +4,5 @@ runs:
   using: composite
   steps:
     - name: Cron test
-      run: echo hello
+      run: echo "hello"
       shell: bash
