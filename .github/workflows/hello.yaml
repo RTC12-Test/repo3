@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Check if it’s the first Monday
         id: check_first_monday
@@ -27,7 +27,7 @@ jobs:
         
       - name: trigger job
         if: ${{ steps.check_first_monday.outputs.is_first_monday == 'true' }}
-        uses: ./.github/actions/cron@main
+        uses: RTC12-Test/.github/actions/cron@main
 
 
         
