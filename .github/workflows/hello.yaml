@@ -5,8 +5,11 @@ on:
   push:
   
 jobs:
-  run_bash_script:
+ cron_check:
     runs-on: ubuntu-latest
+    outputs: 
+      is_first_monday: ${{ steps.check_first_monday.outputs.is_first_monday }}
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -16,7 +19,7 @@ jobs:
         run: |
           DAY_OF_MONTH=$(date +'%d')
           if [ "$DAY_OF_MONTH" -le 13 ]; then
-            echo "This is the first Monday of the month."
+            echo "This is the third Monday of the month."
             echo "is_first_monday=true" >> $GITHUB_OUTPUT
             
           else
@@ -25,9 +28,14 @@ jobs:
             # exit 0
           fi
         
-      - name: trigger job
-        if: ${{ steps.check_first_monday.outputs.is_first_monday == 'true' }}
-        uses: RTC12-Test/repo3/.github/actions/cron@main
+ deployment: 
+        name: trigger job
+        needs: ["cron_check"]
+        if: ${{ needs.cron_check.outputs.is_first_monday == 'true' }}
+        runs-on: ubuntu-latest
+        steps:
+          - name : Deploy test
+            run:  echo hello
 
 
         
