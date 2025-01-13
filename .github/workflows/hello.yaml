@@ -27,7 +27,7 @@ jobs:
         
       - name: trigger job
         if: ${{ steps.check_first_monday.outputs.is_first_monday == 'true' }}
-        uses: RTC12-Test/repo3/.github/actions/cron@main
+        uses: ./.github/actions/cron@main
 
 
         
