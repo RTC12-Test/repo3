@@ -1,7 +1,8 @@
-name: Job
-description: Cron job test
+name: "Job"
+
+description: "Cron job test"
 runs:
-  using: composite
+  using: 'composite'
   steps:
     - name: Cron test
       run: echo "hello"
