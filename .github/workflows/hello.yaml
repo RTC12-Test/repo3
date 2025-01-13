@@ -27,7 +27,7 @@ jobs:
         
       - name: trigger job
         if: ${{ steps.check_first_monday.outputs.is_first_monday == 'true' }}
-        uses: ./.github/actions/job@main
+        uses: ./.github/actions/cron@main
 
 
         
