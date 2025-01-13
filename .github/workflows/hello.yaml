@@ -21,12 +21,12 @@ jobs:
           else
             echo "Not the first Monday. Skipping."
             echo "is_first_monday=false" >> $GITHUB_OUTPUT
-            exit 0
+            # exit 0
           fi
         
       - name: trigger job
         if: ${{ steps.output.check_first_monday.is_first_monday = 'true' }}
-        uses: ./github/actions/job@main
+        uses: ./.github/actions/job@main
 
 
         
