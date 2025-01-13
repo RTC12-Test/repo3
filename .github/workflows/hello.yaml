@@ -18,6 +18,7 @@ jobs:
           if [ "$DAY_OF_MONTH" -le 13 ]; then
             echo "This is the first Monday of the month."
             echo "is_first_monday=true" >> $GITHUB_OUTPUT
+            
           else
             echo "Not the first Monday. Skipping."
             echo "is_first_monday=false" >> $GITHUB_OUTPUT
@@ -25,7 +26,7 @@ jobs:
           fi
         
       - name: trigger job
-        if: ${{ steps.output.check_first_monday.is_first_monday == true }}
+        if: ${{ steps.output.check_first_monday.is_first_monday == "true" }}
         uses: ./.github/actions/job@main
 
 
