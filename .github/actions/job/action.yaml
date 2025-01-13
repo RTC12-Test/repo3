@@ -1,0 +1,8 @@
+name: Job
+description: Cron job test
+runs:
+  using: composite
+  steps:
+    - name: Cron test
+      run: echo hello
+      shell: bash
