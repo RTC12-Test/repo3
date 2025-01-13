@@ -25,7 +25,7 @@ jobs:
           fi
         
       - name: trigger job
-        if: ${{ steps.output.check_first_monday.is_first_monday == 'true' }}
+        if: ${{ steps.output.check_first_monday.is_first_monday == true }}
         uses: ./.github/actions/job@main
 
 
