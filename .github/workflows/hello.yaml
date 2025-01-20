@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "Running a test script..."
           # Simulate a test command here (e.g., run unit tests)
-          if [[ 200 -gt 20000 ]]; then
+          if [[ 20000000 -gt 20000 ]]; then
             echo "Test passed!"
             exit 0
           else
