@@ -28,6 +28,7 @@ jobs:
 
       - name: Notify slack
         if:  ${{ always() }}
+        uses: rtCamp/action-slack-notify@v2
         env:
          SLACK_COLOR: ${{ steps.run_test.conclusion == 'success' && '00FF00' || 'FF0000' }} # or a specific color like 'good' or '#ff00ff'
          SLACK_MESSAGE: 'Post Content :rocket:'
