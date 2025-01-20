@@ -5,11 +5,11 @@ on:
   #   branches:
   #     - main
  workflow_call:
-  secrets:
-      webhook-url:
-        description: "webhook secret url"
-        # type: string
-        required: true
+  # secrets:
+  #     webhook-url:
+  #       description: "webhook secret url"
+  #       # type: string
+  #       required: true
 
 jobs:
   cron_check:
