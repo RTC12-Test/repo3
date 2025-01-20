@@ -39,4 +39,4 @@ jobs:
          SLACK_MESSAGE: 'Post Content :rocket:'
          SLACK_TITLE: hello
         # SLACK_USERNAME: rtCamp
-         SLACK_WEBHOOK: ${{ secrets.webhook-url }} 
+         SLACK_WEBHOOK: "${{ secrets.webhook-url }}"
