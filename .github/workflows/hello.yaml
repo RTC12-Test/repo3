@@ -1,16 +1,17 @@
 name: Scheduled Job with Bash
+
 on:
   push:
     branches:
       - main
-  
+
 jobs:
- cron_check:
+  cron_check:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Run Test Script
         id: run_test
@@ -25,15 +26,8 @@ jobs:
             exit 1
           fi
 
-      - name: Output on Success
-        if: ${{ success() }}
-        run: echo -e "\033[32m✅ Tests Passed Successfully!\033[0m"
-
-      - name: Output on Failure
-        if: ${{ failure() }}
-        run: echo -e "\033[31m❌ Tests Failed!\033[0m"
-
-
-        
-
-
+      - name: Output Status with Color
+        env:
+          COLOR: ${{ success() && '#00FF00' || '#FF0000' }}
+        run: >
+          echo -e "\033[38;2;${{ env.COLOR }}m■ Build Status: $(if [[ ${{ success() }} == 'true' ]]; then echo SUCCESS; else echo FAILURE; fi)\033[0m"
