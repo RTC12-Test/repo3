@@ -31,14 +31,3 @@ jobs:
             echo "Test failed!"
             exit 1
           fi
-
-      - name: Notify slack
-        if:  ${{ always() }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-         SLACK_COLOR: ${{ steps.run_test.conclusion == 'success' && '00FF00' || 'FF0000' }} # or a specific color like 'good' or '#ff00ff'
-         SLACK_MESSAGE: 'Post Content :rocket:'
-         SLACK_TITLE: hello
-        # SLACK_USERNAME: rtCamp
-         SLACK_WEBHOOK: "${{ secrets.webhook-url }}"
-         # SLACK_WEBHOOK: "https://hooks.slack.com/services/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" 

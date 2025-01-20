@@ -1,0 +1,36 @@
+name: Notify slack app for latest updates
+# This workflow is triggered to Notify slack app for latest updates
+
+on:
+  workflow_call:
+    inputs:
+      slack-colour:
+        description: "notification message colour"
+        type: string
+        required: false
+        default: ff0000
+      message:
+        description: "notification message"
+        type: string
+        required: true
+      title:
+        description: "notification Title"
+        type: string
+        required: true
+    secrets:
+      webhook-url:
+        description: "webhook secret url"
+        required: true
+      
+jobs:
+   # Send notifications for latest updates on slack app
+   notify-on-slack: 
+    runs-on: ubuntu-latest
+    steps:
+        - name: Send notification
+          uses: rtCamp/action-slack-notify@v2
+          env:
+           SLACK_COLOR: ${{ inputs.slack-colour }}
+           SLACK_WEBHOOK: ${{ secrets.webhook-url }} 
+           SLACK_MESSAGE: ${{ inputs.message }}
+           SLACK_TITLE: ${{ inputs.title }}
