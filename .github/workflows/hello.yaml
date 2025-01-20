@@ -1,9 +1,14 @@
 name: Scheduled Job with Bash
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
+ workflow_call:
+  secrets:
+      webhook-url:
+        description: "webhook secret url"
+        required: true
 
 jobs:
   cron_check:
@@ -34,4 +39,4 @@ jobs:
          SLACK_MESSAGE: 'Post Content :rocket:'
          SLACK_TITLE: hello
         # SLACK_USERNAME: rtCamp
-         SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
+         SLACK_WEBHOOK: ${{ secrets.webhook-url }} 
