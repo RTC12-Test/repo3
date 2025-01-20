@@ -1,41 +1,37 @@
 name: Scheduled Job with Bash
 on:
-  schedule:
-    - cron: '30 7 13-20 * 1'  # Runs at 5:30 AM UTC on January 10th
   push:
+    branches:
+      - main
   
 jobs:
  cron_check:
     runs-on: ubuntu-latest
-    outputs: 
-      is_first_monday: ${{ steps.check_first_monday.outputs.is_first_monday }}
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check if it’s the first Monday
-        id: check_first_monday
+      - name: Run Test Script
+        id: run_test
         run: |
-          DAY_OF_MONTH=$(date +'%d')
-          if [ "$DAY_OF_MONTH" -le 13 ]; then
-            echo "This is the third Monday of the month."
-            echo "is_first_monday=true" >> $GITHUB_OUTPUT
-            
+          echo "Running a test script..."
+          # Simulate a test command here (e.g., run unit tests)
+          if [[ 200 -gt 20000 ]]; then
+            echo "Test passed!"
+            exit 0
           else
-            echo "Not the first Monday. Skipping."
-            echo "is_first_monday=false" >> $GITHUB_OUTPUT
-            # exit 0
+            echo "Test failed!"
+            exit 1
           fi
-        
- deployment: 
-        name: trigger job
-        needs: ["cron_check"]
-        if: ${{ needs.cron_check.outputs.is_first_monday == 'true' }}
-        runs-on: ubuntu-latest
-        steps:
-          - name : Deploy test
-            run:  echo hello
+
+      - name: Output on Success
+        if: ${{ success() }}
+        run: echo -e "\033[32m✅ Tests Passed Successfully!\033[0m"
+
+      - name: Output on Failure
+        if: ${{ failure() }}
+        run: echo -e "\033[31m❌ Tests Failed!\033[0m"
 
 
         
