@@ -5,10 +5,10 @@ on:
   #   branches:
   #     - main
  workflow_call:
-  inputs:
+  secrets:
       webhook-url:
         description: "webhook secret url"
-        type: string
+        # type: string
         required: true
 
 jobs:
@@ -40,5 +40,5 @@ jobs:
          SLACK_MESSAGE: 'Post Content :rocket:'
          SLACK_TITLE: hello
         # SLACK_USERNAME: rtCamp
-         SLACK_WEBHOOK: "${{ inputs.webhook-url }}"
+         SLACK_WEBHOOK: "${{ secrets.webhook-url }}"
          # SLACK_WEBHOOK: "https://hooks.slack.com/services/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" 
