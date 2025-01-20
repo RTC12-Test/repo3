@@ -27,7 +27,10 @@ jobs:
           fi
 
       - name: Output Status with Color
+        if: ${{ always() }}
         run: |
+          if [[ ${{ steps.run_test.conclusion }} = 'success' ]]; then
           echo -e "\033[32m✅ Tests Passed Successfully!\033[0m"
-          echo -e "\033[31m❌ Tests Failed!\033[0m"
-        if: ${{ success() }}
+          else
+           echo -e "\033[31m❌ Tests Failed!\033[0m"
+          fi
