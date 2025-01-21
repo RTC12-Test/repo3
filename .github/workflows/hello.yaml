@@ -5,6 +5,11 @@ on:
   #   branches:
   #     - main
  workflow_call:
+  inputs:
+    env:
+      description: asd
+      required: true
+      type:  string
   # secrets:
   #     webhook-url:
   #       description: "webhook secret url"
@@ -14,6 +19,8 @@ on:
 jobs:
   cron_check:
     runs-on: ubuntu-latest
+    outputs: 
+     env: ${{ inputs.env }}
 
     steps:
       - name: Checkout repository
