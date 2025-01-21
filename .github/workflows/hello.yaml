@@ -16,7 +16,8 @@ on:
   #       # type: string
   #       required: true
   outputs:
-    env: ${{ jobs.cron_check.outputs.env }}
+    env: 
+      value: ${{ jobs.cron_check.outputs.env }}
 
 jobs:
   cron_check:
