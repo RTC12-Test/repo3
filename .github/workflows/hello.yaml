@@ -23,7 +23,7 @@ jobs:
   cron_check:
     runs-on: ubuntu-latest
     outputs: 
-     env: ${{ inputs.env }}
+     env: ${{ steps.asd.outputs.env }}
 
     steps:
       - name: Checkout repository
@@ -41,3 +41,7 @@ jobs:
             echo "Test failed!"
             exit 1
           fi
+
+      - name: output
+        id: asd
+        run: echo env=${{ inputs.env }} >> $GITHUB_OUTPUT
