@@ -12,7 +12,7 @@ on:
 jobs:
   upload:
     name : Run upload artifact
-    uses:  RTC12-Test/repo2/.github/workflows/check.yaml
+    uses:  RTC12-Test/repo2/.github/workflows/check.yaml@main
     with: 
      env: ${{inputs .env }}
 
