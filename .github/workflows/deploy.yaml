@@ -1,0 +1,26 @@
+name: Download Artifact
+
+on:
+  workflow_call:
+   inputs:
+     env: 
+      default: s
+      required:  true
+      type: string
+      description: ''
+
+jobs:
+  upload:
+    name : Run upload artifact
+    uses:  RTC12-Test/repo2/.github/workflows/check.yaml
+    with: 
+     env: ${{inputs .env }}
+
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: ./downloaded
