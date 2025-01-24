@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create Artifact
-        run: echo "Hello, World!" > hello/hello.txt
+        run: echo "Hello, World!" > ./hello/hello.txt
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
