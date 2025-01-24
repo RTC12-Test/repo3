@@ -16,6 +16,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: ls
+        run: ls
       - name: Create Artifact
         run: echo "Hello, World!" > ./hello/hello.txt
 
