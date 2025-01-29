@@ -1,23 +1,24 @@
 name: Scheduled Job with Bash
 
 on:
-  # push:
-  #   branches:
-  #     - main
- workflow_call:
-  inputs:
-    env:
-      description: asd
-      required: true
-      type:  string
-  # secrets:
-  #     webhook-url:
-  #       description: "webhook secret url"
-  #       # type: string
-  #       required: true
-  outputs:
-    env: 
-      value: ${{ jobs.cron_check.outputs.env }}
+  push:
+    branches:
+      - main
+ # workflow_call:
+pu
+  # inputs:
+  #   env:
+  #     description: asd
+  #     required: true
+  #     type:  string
+  # # secrets:
+  # #     webhook-url:
+  # #       description: "webhook secret url"
+  # #       # type: string
+  # #       required: true
+  # outputs:
+  #   env: 
+  #     value: ${{ jobs.cron_check.outputs.env }}
 
 jobs:
   cron_check:
@@ -29,18 +30,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run Test Script
-        id: run_test
-        run: |
-          echo "Running a test script..."
-          # Simulate a test command here (e.g., run unit tests)
-          if [[ 200 -gt 20000 ]]; then
-            echo "Test passed!"
-            exit 0
-          else
-            echo "Test failed!"
-            exit 1
-          fi
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+         aws-access-key-id: asjdkasjdkasd
+         aws-secret-access-key: asasdasdalsdklaskdlaskdlkalsdkalsdk
+
+      # - name: Run Test Script
+      #   id: run_test
+      #   run: |
+      #     echo "Running a test script..."
+      #     # Simulate a test command here (e.g., run unit tests)
+      #     if [[ 200 -gt 20000 ]]; then
+      #       echo "Test passed!"
+      #       exit 0
+      #     else
+      #       echo "Test failed!"
+      #       exit 1
+      #     fi
 
       # - name: output
       #   id: asd
