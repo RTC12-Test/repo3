@@ -1,10 +1,10 @@
 name: Scheduled Job with Bash
 
 on:
-  push:
-    branches:
-      - main
- # workflow_call:
+  # push:
+  #   branches:
+      # - main
+    workflow_call:
 
   # inputs:
   #   env:
