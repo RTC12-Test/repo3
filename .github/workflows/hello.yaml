@@ -29,12 +29,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: echo
+        run: exit 1
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-         aws-access-key-id: asjdkasjdkasd
-         aws-secret-access-key: asasdasdalsdklaskdlaskdlkalsdkalsdk
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #    aws-access-key-id: asjdkasjdkasd
+      #    aws-secret-access-key: asasdasdalsdklaskdlaskdlkalsdkalsdk
 
       # - name: Run Test Script
       #   id: run_test
