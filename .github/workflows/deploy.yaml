@@ -21,8 +21,12 @@ jobs:
     needs: ['upload']
     steps:
       - uses: actions/checkout@v4
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
+      - name: Copy files via SSH
+        uses: appleboy/scp-action@v1
         with:
-          name: my-artifact
-          path: hello
+          host: "122.164.85.202"
+          username: "ghost"
+          password: "as"
+          port: 22
+          source: "!hello/asd"
+          target: "/home/ghost/testssh"
