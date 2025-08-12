@@ -1,4 +1,4 @@
-name: Download Artifact
+name: SSH
 
 on:
   # workflow_call:
@@ -18,14 +18,14 @@ jobs:
   #    env: ${{inputs.env }}
 
   ssh:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # needs: ['upload']
     steps:
       - uses: actions/checkout@v4
       - name: Copy files via SSH
         uses: appleboy/scp-action@v1
         with:
-          host: "122.164.85.202"
+          host: "192.168.122.220"
           username: "ghost"
           password: "as"
           port: 22
