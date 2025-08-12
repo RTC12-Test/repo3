@@ -29,5 +29,5 @@ jobs:
           username: "ghost"
           password: "as"
           port: 22
-          source: "!hello/asd"
+          source: "!hello/asd,hello/hello.txt"
           target: "/home/ghost/testssh"
