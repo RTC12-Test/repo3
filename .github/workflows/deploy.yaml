@@ -1,13 +1,14 @@
 name: Download Artifact
 
 on:
-  workflow_call:
-   inputs:
-     env: 
-      default: "s"
-      required:  true
-      type: string
-      description: ''
+  # workflow_call:
+  #  inputs:
+  #    env: 
+  #     default: "s"
+  #     required:  true
+  #     type: string
+  #     description: ''
+ push:
 
 jobs:
   upload:
