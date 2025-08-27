@@ -10,6 +10,9 @@ on:
   #     description: ''
  push:
 
+permissions:
+  id-token: write # this is required for requesting the jwt
+  contents: read
 jobs:
   # upload:
   #   name : Run upload artifact
