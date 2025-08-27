@@ -47,7 +47,7 @@ jobs:
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.HOST_KEY }}
           port: 22
-          source: hello/hello.txt
+          source: hello/
           target: /home/ubuntu
 
         # Executing commands on the remote server over SSH 
