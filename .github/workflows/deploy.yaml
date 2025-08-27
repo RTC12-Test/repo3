@@ -47,7 +47,7 @@ jobs:
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.HOST_KEY }}
           port: 22
-          source: /opt
+          source: /opt/
           target: /opt
         # Executing commands on the remote server over SSH 
       # - name: Execute remote SSH commands 
