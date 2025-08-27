@@ -34,10 +34,10 @@ jobs:
           role-session-name: "testsession"
           aws-region: "us-east-1"
 
-      #   # Copying files from S3 bucket
-      # - name: Copying json file from S3 bucket
-      #   run: |
-      #       aws s3 cp "s3://aravind-rtctestpoc/" /opt --recursive
+        # Copying files from S3 bucket
+      - name: Copying json file from S3 bucket
+        run: |
+            aws s3 cp "s3://aravind-rtctestpoc/" /opt --recursive
 
 
       - name: Copy s3 files to remote server via SCP
@@ -47,8 +47,8 @@ jobs:
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.HOST_KEY }}
           port: 22
-          source: hello/
-          target: /home/ubuntu
+          source: /opt/
+          target: /opt
 
         # Executing commands on the remote server over SSH 
       # - name: Execute remote SSH commands 
