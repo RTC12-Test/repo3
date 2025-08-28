@@ -34,20 +34,20 @@ jobs:
           role-session-name: "testsession"
           aws-region: "us-east-1"
 
-        # Copying files from S3 bucket
-      - name: Copying json file from S3 bucket
-        run: |
-            aws s3 cp "s3://aravind-rtctestpoc/" s3_files --recursive
+      #   # Copying files from S3 bucket
+      # - name: Copying json file from S3 bucket
+      #   run: |
+      #       aws s3 cp "s3://aravind-rtctestpoc/" s3_files --recursive
 
-      - name: Copy s3 files to remote server via SCP
-        uses: appleboy/scp-action@v1
-        with:
-          host: ${{ secrets.HOST_IP }}
-          username: ${{ secrets.HOST_USER }}
-          key: ${{ secrets.HOST_KEY }}
-          port: 22
-          source: "s3_files/*"
-          target: "/opt"
+      # - name: Copy s3 files to remote server via SCP
+      #   uses: appleboy/scp-action@v1
+      #   with:
+      #     host: ${{ secrets.HOST_IP }}
+      #     username: ${{ secrets.HOST_USER }}
+      #     key: ${{ secrets.HOST_KEY }}
+      #     port: 22
+      #     source: "s3_files/*"
+      #     target: "/opt"
 
         # Executing commands on the remote server over SSH for s3 files
       - name: Execute remote SSH commands for s3 files 
@@ -58,10 +58,12 @@ jobs:
           key: ${{ secrets.HOST_KEY }}
           port: 22 
           script: |
-            cd /opt/s3_files
-            mv * /opt
-            cd ..
-            rmdir s3_files 
+            # cd /opt/s3_files
+            # mv * /opt
+            # cd ..
+            # rmdir s3_files 
+            aws s3 cp "s3://aravind-rtctestpoc/" /opt --recursive
+
         # Executing commands on the remote server over SSH 
       # - name: Execute remote SSH commands 
       #   uses: appleboy/ssh-action@v1
