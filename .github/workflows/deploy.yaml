@@ -37,7 +37,7 @@ jobs:
         # Copying files from S3 bucket
       - name: Copying json file from S3 bucket
         run: |
-            aws s3 cp "s3://aravind-rtctestpoc/" s3 --recursive
+            aws s3 cp "s3://aravind-rtctestpoc/" s3_files --recursive
 
       - name: Copy s3 files to remote server via SCP
         uses: appleboy/scp-action@v1
