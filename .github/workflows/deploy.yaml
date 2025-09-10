@@ -11,9 +11,10 @@ on:
   # push:
   issue_comment:
 
-# permissions:
-#   id-token: write # this is required for requesting the jwt
-#   contents: read
+permissions:
+  #   id-token: write # this is required for requesting the jwt
+  #   contents: read
+  issues: read
 #
 jobs:
   comment_run:
