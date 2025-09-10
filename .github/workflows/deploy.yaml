@@ -26,9 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo A comment on PR $NUMBER
-        env:
-          NUMBER: ${{ toJSON(github.event.comment) }}
+          echo A comment on PR this ${{ github.event.comment.body }}
     # types: [created, edited, deleted]
     # upload:
     #   name : Run upload artifact
