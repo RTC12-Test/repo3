@@ -1,6 +1,7 @@
-name: SSH
-
+name: PR TEST
 on:
+  issue_comment:
+    types: [created, edited, deleted]
   # workflow_call:
   #  inputs:
   #    env:
@@ -9,8 +10,8 @@ on:
   #     type: string
   #     description: ''
   # push:
-  issue_comment:
-    types: [created, edited, deleted]
+  # issue_comment:
+  # types: [created, edited, deleted]
 
 permissions:
   id-token: write # this is required for requesting the jwt
@@ -18,73 +19,77 @@ permissions:
   issues: read
 #
 jobs:
-  comment_run:
-    name: Pr run
-    if: contains(github.event.comment.html_url, 'test')
+  pr_commented:
+    # This job only runs for pull request comments
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
-      - name: echo
-        run: echo hello
-  # upload:
-  #   name : Run upload artifact
-  #   uses:  RTC12-Test/repo3/.github/workflows/check.yaml@main
-  #   with:
-  #    env: ${{inputs.env }}
+      - run: |
+          echo A comment on PR $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+    # types: [created, edited, deleted]
+    # upload:
+    #   name : Run upload artifact
+    #   uses:  RTC12-Test/repo3/.github/workflows/check.yaml@main
+    #   with:
+    #    env: ${{inputs.env }}
 
-  # ssh:
-  #   runs-on: ubuntu-latest
-  #   # needs: ['upload']
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #
-  #       # Login into AWS
-  #     - name: Configure AWS Credentials
-  #       uses: aws-actions/configure-aws-credentials@v4
-  #       with:
-  #         role-to-assume: "arn:aws:iam::820976530240:role/rtc-test"
-  #         role-session-name: "testsession"
-  #         aws-region: "us-east-1"
-  #
-  #     #   # Copying files from S3 bucket
-  #     # - name: Copying json file from S3 bucket
-  #     #   run: |
-  #     #       aws s3 cp "s3://aravind-rtctestpoc/" s3_files --recursive
-  #     - name: Copy s3 files to remote server via SCP
-  #       uses: appleboy/scp-action@v1
-  #       with:
-  #         host: ${{ secrets.HOST_IP }}
-  #         username: ${{ secrets.HOST_USER }}
-  #         key: ${{ secrets.HOST_KEY }}
-  #         port: 22
-  #         source: "*.txt,!.github,!.git"
-  #         target: "/opt"
+    # ssh:
+    #   runs-on: ubuntu-latest
+    #   # needs: ['upload']
+    #   steps:
+    #     - uses: actions/checkout@v4
+    #
+    #       # Login into AWS
+    #     - name: Configure AWS Credentials
+    #       uses: aws-actions/configure-aws-credentials@v4
+    #       with:
+    #         role-to-assume: "arn:aws:iam::820976530240:role/rtc-test"
+    #         role-session-name: "testsession"
+    #         aws-region: "us-east-1"
+    #
+    #     #   # Copying files from S3 bucket
+    #     # - name: Copying json file from S3 bucket
+    #     #   run: |
+    #     #       aws s3 cp "s3://aravind-rtctestpoc/" s3_files --recursive
+    #     - name: Copy s3 files to remote server via SCP
+    #       uses: appleboy/scp-action@v1
+    #       with:
+    #         host: ${{ secrets.HOST_IP }}
+    #         username: ${{ secrets.HOST_USER }}
+    #         key: ${{ secrets.HOST_KEY }}
+    #         port: 22
+    #         source: "*.txt,!.github,!.git"
+    #         target: "/opt"
 
-  # Executing commands on the remote server over SSH for s3 files
-  # - name: Execute remote SSH commands for s3 files
-  #   uses: appleboy/ssh-action@v1
-  #   with:
-  #     host: ${{ secrets.HOST_IP }}
-  #     username: ${{ secrets.HOST_USER }}
-  #     key: ${{ secrets.HOST_KEY }}
-  #     port: 22
-  #     script: |
-  # cd /opt/s3_files
-  # mv * /opt
-  # cd ..
-  # rmdir s3_files
-  # aws s3 cp "s3://aravind-rtctestpoc/" /opt --recursive
+    # Executing commands on the remote server over SSH for s3 files
+    # - name: Execute remote SSH commands for s3 files
+    #   uses: appleboy/ssh-action@v1
+    #   with:
+    #     host: ${{ secrets.HOST_IP }}
+    #     username: ${{ secrets.HOST_USER }}
+    #     key: ${{ secrets.HOST_KEY }}
+    #     port: 22
+    #     script: |
+    # cd /opt/s3_files
+    # mv * /opt
+    # cd ..
+    # rmdir s3_files
+    # aws s3 cp "s3://aravind-rtctestpoc/" /opt --recursive
 
-  # Executing commands on the remote server over SSH
-  # - name: Execute remote SSH commands
-  #   uses: appleboy/ssh-action@v1
-  #   with:
-  #     host: ${{ secrets.HOST_IP }}
-  #     username: ${{ secrets.HOST_USER }}
-  #     key: ${{ secrets.HOST_KEY }}
-  #     port: 22
-  #     script: |
-  #       echo "${{ secrets.ENV }}" > .env
-  #       rm -rf s3_files
-  #       npm i
-  #       pm2 restart ${{ inputs.env }}
-  #
+    # Executing commands on the remote server over SSH
+    # - name: Execute remote SSH commands
+    #   uses: appleboy/ssh-action@v1
+    #   with:
+    #     host: ${{ secrets.HOST_IP }}
+    #     username: ${{ secrets.HOST_USER }}
+    #     key: ${{ secrets.HOST_KEY }}
+    #     port: 22
+    #     script: |
+    #       echo "${{ secrets.ENV }}" > .env
+    #       rm -rf s3_files
+    #       npm i
+    #       pm2 restart ${{ inputs.env }}
+    #
