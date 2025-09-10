@@ -1,7 +1,8 @@
 name: PR TEST
 
 on:
-  issue_comment
+  issue_comment:
+    types: [created, edited, deleted]
   # workflow_call:
   #  inputs:
   #    env:
