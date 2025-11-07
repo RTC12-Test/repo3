@@ -95,7 +95,7 @@ jobs:
   runs-on: ubuntu-latest
   steps:
       - name: Echo to GIHUB_ENV
-        run: echo "test=aravind" >> $GIHUB_ENV
+        run: echo "test=aravind" >> $GITHUB_ENV
       - name: Printing github_env
         run: echo $test
 
