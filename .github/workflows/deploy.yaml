@@ -101,10 +101,10 @@ jobs:
       - name: test 
         run: |
           ls
-          echo "Updating cron task to new tag: ${{ inputs.docker-image-tag }}"
-          jq '.containerDefinitions[0].image |= sub(":[^:]+$"; ":${{ inputs.docker-image-tag }}")' \
-          ./task-definition.json > new-cron-task.json
-          cat new-cron-task.json
+          # echo "Updating cron task to new tag: ${{ inputs.docker-image-tag }}"
+          # jq '.containerDefinitions[0].image |= sub(":[^:]+$"; ":${{ inputs.docker-image-tag }}")' \
+          # ./task-definition.json > new-cron-task.json
+          # cat new-cron-task.json
 
 
     
