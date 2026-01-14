@@ -5,10 +5,9 @@ on:
   workflow_call:
    inputs:
      docker-image-tag:
-      default: "s"
-      required:  true
-      type: string
-      description: ''
+      type: boolean
+      required:  false
+      default: false
   # push:
   # issue_comment:
   # types: [created, edited, deleted]
@@ -19,6 +18,7 @@ permissions:
   issues: read
 #
 jobs:
+   # prd
   # pr_commented:
   #   # This job only runs for pull request comments
   #   name: PR comment
@@ -101,12 +101,13 @@ jobs:
       # - name: checkout 
       - uses: actions/checkout@v4
       - name: test 
+        if: ${{ inputs.docker-image-tag == false }}
         run: |
           ls
           echo "Updating cron task to new tag: ${{ inputs.docker-image-tag }}"
-          jq '.containerDefinitions[0].image |= sub(":[^:]+$"; ":${{ inputs.docker-image-tag }}")' \
-          task-definition.json > new-cron-task.json
-          cat new-cron-task.json
+          # jq '.containerDefinitions[0].image |= sub(":[^:]+$"; ":${{ inputs.docker-image-tag }}")' \
+          # task-definition.json > new-cron-task.json
+          # cat new-cron-task.json
 
 
     
