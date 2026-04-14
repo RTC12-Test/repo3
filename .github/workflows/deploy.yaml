@@ -18,7 +18,11 @@ permissions:
   issues: read
 #
 jobs:
-   # prd
+   test:
+    runs-on: ubuntu-latest
+    steps:
+     - name: helllo
+       run: echo "test"
   # pr_commented:
   #   # This job only runs for pull request comments
   #   name: PR comment
@@ -91,20 +95,20 @@ jobs:
     #       npm i
     #       pm2 restart ${{ inputs.env }}
     #
- github_env:
-  runs-on: ubuntu-latest
-  steps:
+ # github_env:
+ #  runs-on: ubuntu-latest
+ #  steps:
       # - name: Echo to GIHUB_ENV
       #   run: echo "test=aravind" >> $GITHUB_ENV
       # - name: Printing github_env
       #   run: echo $test
       # - name: checkout 
-      - uses: actions/checkout@v4
-      - name: test 
-        if: ${{ inputs.docker-image-tag == false }}
-        run: |
-          # ls
-          echo "Updating cron task to new tag: ${{ inputs.docker-image-tag }}"
+      # - uses: actions/checkout@v4
+      # - name: test 
+      #   if: ${{ inputs.docker-image-tag == false }}
+      #   run: |
+      #     # ls
+      #     echo "Updating cron task to new tag: ${{ inputs.docker-image-tag }}"
           # jq '.containerDefinitions[0].image |= sub(":[^:]+$"; ":${{ inputs.docker-image-tag }}")' \
           # task-definition.json > new-cron-task.json
           # cat new-cron-task.json
