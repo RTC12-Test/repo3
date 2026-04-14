@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: helllo
-       run: echo "test"
+       run: exit 1
   # pr_commented:
   #   # This job only runs for pull request comments
   #   name: PR comment
