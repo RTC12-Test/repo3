@@ -18,7 +18,7 @@ on:
         type: string
         required: true
     secrets:
-      webhook-url:
+      webhook:
         description: "webhook secret url"
         required: true
       
@@ -31,6 +31,6 @@ jobs:
           uses: rtCamp/action-slack-notify@v2
           env:
            SLACK_COLOR: ${{ inputs.slack-colour }}
-           SLACK_WEBHOOK: ${{ secrets.webhook-url }} 
+           SLACK_WEBHOOK: ${{ secrets.webhook }} 
            SLACK_MESSAGE: ${{ inputs.message }}
            SLACK_TITLE: ${{ inputs.title }}
